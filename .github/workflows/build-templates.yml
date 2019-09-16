@@ -32,8 +32,8 @@ jobs:
 
     - name: Compile VersionInfo
       run: |
-        PATH=%PATH%;%GITHUB_WORKSPACE%\resource_hacker\
-        ResourceHacker.exe -open %GITHUB_WORKSACE%\windows\VersionInfo1.rc -save %GITHUB_WORKSPACE%\windows\VersionInfo1.res -action compile
+        cd %GITHUB_WORKSPACE%
+        .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo1.rc -save .\windows\VersionInfo1.res -action compile
 
     - name: Debug Info
       run: |
