@@ -37,13 +37,8 @@ jobs:
 
     - name: Debug Info
       run: |
-        cd %GITHUB_WORKSPACE%\..
-        echo DIRECTORY
+        cd %GITHUB_WORKSPACE%\windows\
         dir
-        echo TREE
-        tree
-        echo PATH
-        echo %path%
 
     # - name: Download LÖVE
     #   run:
