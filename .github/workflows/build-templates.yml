@@ -32,9 +32,12 @@ jobs:
 
     - name: Compile VersionInfo
       run: |
+        dir
         echo %GITHUB_WORKSPACE%
-        cd %GITHUB_WORKSPACE%
+        echo %CD%
+        cd %GITHUB_WORKSPACE%\
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo1.rc -save .\windows\VersionInfo1.res -action compile
+        echo BEEEEB
 
     - name: Debug Info
       run: |
