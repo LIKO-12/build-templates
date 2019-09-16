@@ -19,14 +19,18 @@ jobs:
       uses: actions/setup-go@v1
       with:
         go-version: '1.10.x'
-    - name: Install WGET
+    - name: Install wget
       run: pip3 install wget
-    - name: List directory in workspace
+    - name: Download Resource Hacker
       run: |
-        cd %GITHUB_WORKSACE%
-        tree
-    # - name: Download Resource Hacker
-    #   run: 
+        wget http://angusj.com/resourcehacker/resource_hacker.zip -O %GITHUB_WORKSPACE%\resource_hacker.zip
+        PATH=%PATH%;C:\Program Files\7-Zip\
+        7z e -Y %GITHUB_WORKSPACE%\resource_hacker.zip %GITHUB_WORKS%\resource_hacker
+    - name: Debug Filesystem Tree
+      run: |
+        cd %GITHUB_WORKSPACE%
+        tree .
+
     # - name: Download LÖVE
     #   run:
     # - name: Change the executable icon
