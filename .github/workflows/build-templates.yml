@@ -23,7 +23,7 @@ jobs:
       run: pip3 install wget
     - name: Download Resource Hacker
       run: |
-        python -m wget http://angusj.com/resourcehacker/resource_hacker.zip -O %GITHUB_WORKSPACE%\resource_hacker.zip
+        python -m wget -O %GITHUB_WORKSPACE%\resource_hacker.zip http://angusj.com/resourcehacker/resource_hacker.zip
         7z e -Y %GITHUB_WORKSPACE%\resource_hacker.zip %GITHUB_WORKS%\resource_hacker
     - name: Debug Filesystem Tree
       run: |
