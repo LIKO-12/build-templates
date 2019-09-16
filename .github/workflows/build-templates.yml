@@ -14,10 +14,10 @@ jobs:
         python-version: '3.x'
         architecture: 'x64'
 
-    - name: Setup GO
-      uses: actions/setup-go@v1
-      with:
-        go-version: '1.10.x'
+    # - name: Setup GO
+    #   uses: actions/setup-go@v1
+    #   with:
+    #     go-version: '1.10.x'
 
     - name: Install wget
       run: pip3 install wget
