@@ -1,0 +1,37 @@
+name: Build Templates
+on: push
+  # release:
+  #   types: [created]
+
+jobs:
+  windows:
+    name: Create windows templates
+    runs-on: windows-2019
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+        architecture: 'x64'
+    - name: Setup GO
+      uses: actions/setup-go@v1
+      with:
+        go-version: '1.10.x'
+    - name: Install WGET
+      run: pip3 install wget
+    - name: List directory in workspace
+      run: |
+        cd %GITHUB_WORKSACE%
+        tree
+    # - name: Download Resource Hacker
+    #   run: 
+    # - name: Download LÖVE
+    #   run:
+    # - name: Change the executable icon
+    #   run:
+    # - name: Package the build template
+    #   run:
+    # - name: Upload the build template
+    #   run:
