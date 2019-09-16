@@ -28,16 +28,12 @@ jobs:
     - name: Download Resource Hacker
       run: |
         python -m wget --output %GITHUB_WORKSPACE%\resource_hacker.zip http://angusj.com/resourcehacker/resource_hacker.zip
-        7z x %GITHUB_WORKSPACE%\resource_hacker.zip -o%GITHUB_WORKS%\resource_hacker
+        7z x %GITHUB_WORKSPACE%\resource_hacker.zip -o%GITHUB_WORKSPACE%\resource_hacker
 
     - name: Compile VersionInfo
       run: |
-        dir
-        echo %GITHUB_WORKSPACE%
-        echo %CD%
-        cd %GITHUB_WORKSPACE%\
+        cd %GITHUB_WORKSPACE%
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo1.rc -save .\windows\VersionInfo1.res -action compile
-        echo BEEEEB
 
     - name: Debug Info
       run: |
