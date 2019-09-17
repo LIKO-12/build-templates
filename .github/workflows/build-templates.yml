@@ -33,7 +33,8 @@ jobs:
     - name: Compile VersionInfo
       run: |
         cd %GITHUB_WORKSPACE%
-        .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo1.rc -save .\windows\VersionInfo1.res -action compile -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_love.rc -save .\windows\VersionInfo_love.res -action compile -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_lovec.rc -save .\windows\VersionInfo_lovec.res -action compile -log CONSOLE
     
     - name: Download LÖVE
       run: |
@@ -48,13 +49,13 @@ jobs:
         copy .\windows\icon.ico .\love_win32\love.ico
         copy .\windows\icon.ico .\love_win32\game.ico
         echo Patching love.exe icon
-        resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\love_win32\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\love_win32\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
         echo Patching lovec.exe icon
-        resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\love_win32\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\love_win32\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
         echo Patching love.exe VersionInfo
-        resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\windows\VersionInfo1.res -mask VERSIONINFO,1,1033 -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\windows\VersionInfo_love.res -mask VERSIONINFO,1,1033 -log CONSOLE
         echo Patching lovec.exe VersionInfo
-        resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\windows\VersionInfo1.res -mask VERSIONINFO,1,1033 -log CONSOLE
+        .\resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
     
     - name: Uploading Debug Artifacts
       uses: actions/upload-artifact@v1
