@@ -42,7 +42,7 @@ jobs:
     
     - name: Patch LÖVE
       run: |
-        cd %GITHUB_WORKSPACE%
+        cd %GITHUB_WORKSPACE%\
         echo Replacing icon files
         copy .\windows\icon.ico .\love\love.ico
         copy .\windows\icon.ico .\love\game.ico
