@@ -40,8 +40,8 @@ jobs:
       run: |
         python -m wget --output %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-11.2-win32.zip
         7z x %GITHUB_WORKSPACE%\love_win32.zip -o%GITHUB_WORKSPACE%\love_win32
-        move %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32\ %GITHUB_WORKSPACE%\love_win32\
-        del %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32
+        move /Y %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32\*.* %GITHUB_WORKSPACE%\love_win32\
+        del /Q %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32
     
     - name: Patch LÖVE
       run: |
