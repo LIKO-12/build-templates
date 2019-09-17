@@ -14,11 +14,6 @@ jobs:
         python-version: '3.x'
         architecture: 'x64'
 
-    # - name: Setup GO
-    #   uses: actions/setup-go@v1
-    #   with:
-    #     go-version: '1.10.x'
-
     - name: Install wget
       run: pip3 install wget
 
@@ -46,10 +41,6 @@ jobs:
     - name: Patch LÖVE
       run: |
         cd %GITHUB_WORKSPACE%\
-        dir
-        cd love_win32
-        dir
-        cd ..
         echo Replacing icon files
         copy .\windows\icon.ico .\love_win32\love.ico
         copy .\windows\icon.ico .\love_win32\game.ico
@@ -62,22 +53,23 @@ jobs:
         echo Patching lovec.exe VersionInfo
         .\resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
     
-    - name: Uploading Debug Artifacts
+    - name: Upload artifacts
       uses: actions/upload-artifact@v1
       with:
         name: love_win32
         path: love_win32
-
-    - name: Debug Info
-      run: |
-        cd %GITHUB_WORKSPACE%\love_win32\
-        dir
-
-    # - name: Download LÖVE
-    #   run:
-    # - name: Change the executable icon
-    #   run:
-    # - name: Package the build template
-    #   run:
-    # - name: Upload the build template
-    #   run:
+  
+  release:
+    name: Upload into github releases
+    needs: [windows]
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Setup GO
+      uses: actions/setup-go@v1
+      with:
+        go-version: '1.10.x'
+    - name: Download artifacts
+      uses: actions/download-artifact@v1
+      with:
+        name: love_win32
+        path: love_win32
