@@ -45,6 +45,9 @@ jobs:
       run: |
         cd %GITHUB_WORKSPACE%\
         dir
+        cd love_win32
+        dir
+        cd ..
         echo Replacing icon files
         copy .\windows\icon.ico .\love_win32\love.ico
         copy .\windows\icon.ico .\love_win32\game.ico
