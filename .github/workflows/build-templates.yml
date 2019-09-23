@@ -126,6 +126,9 @@ jobs:
       with:
         go-version: '1.10.x'
     
+    - name: Install github-release
+      run: go get github.com/gableroux/github-release
+    
     - name: Download love_win32 artifact
       uses: actions/download-artifact@v1
       with:
