@@ -31,16 +31,18 @@ jobs:
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_love.rc -save .\windows\VersionInfo_love.res -action compile -log CONSOLE
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_lovec.rc -save .\windows\VersionInfo_lovec.res -action compile -log CONSOLE
     
-    - name: Download LÖVE
+    - name: Download LÖVE 32-bit
       run: |
         python -m wget --output %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-11.2-win32.zip
         7z x %GITHUB_WORKSPACE%\love_win32.zip -o%GITHUB_WORKSPACE%\love_win32
         move /Y %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32\*.* %GITHUB_WORKSPACE%\love_win32\
         del /Q %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32
     
-    - name: Patch LÖVE
+    - name: Patch LÖVE 32-bit
       run: |
         cd %GITHUB_WORKSPACE%\
+        echo Copying bin files
+        copy .\windows\bin\i686\*.* .\love_win32\
         echo Replacing icon files
         copy .\windows\icon.ico .\love_win32\love.ico
         copy .\windows\icon.ico .\love_win32\game.ico
@@ -53,11 +55,41 @@ jobs:
         echo Patching lovec.exe VersionInfo
         .\resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
     
-    - name: Upload artifacts
+    - name: Upload love_win32 artifact
       uses: actions/upload-artifact@v1
       with:
         name: love_win32
         path: love_win32
+
+    - name: Download LÖVE 64-bit
+      run: |
+        python -m wget --output %GITHUB_WORKSPACE%\love_win64.zip https://bitbucket.org/rude/love/downloads/love-11.2-win64.zip
+        7z x %GITHUB_WORKSPACE%\love_win64.zip -o%GITHUB_WORKSPACE%\love_win64
+        move /Y %GITHUB_WORKSPACE%\love_win64\love-11.2.0-win64\*.* %GITHUB_WORKSPACE%\love_win64\
+        del /Q %GITHUB_WORKSPACE%\love_win64\love-11.2.0-win64
+
+    - name: Patch LÖVE 64-bit
+      run: |
+        cd %GITHUB_WORKSPACE%\
+        echo Copying bin files
+        copy .\windows\bin\x86_64\*.* .\love_win64\
+        echo Replacing icon files
+        copy .\windows\icon.ico .\love_win64\love.ico
+        copy .\windows\icon.ico .\love_win64\game.ico
+        echo Patching love.exe icon
+        .\resource_hacker\ResourceHacker.exe -open .\love_win64\love.exe -save .\love_win64\love.exe -action addoverwrite -res .\love_win64\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
+        echo Patching lovec.exe icon
+        .\resource_hacker\ResourceHacker.exe -open .\love_win64\lovec.exe -save .\love_win64\lovec.exe -action addoverwrite -res .\love_win64\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
+        echo Patching love.exe VersionInfo
+        .\resource_hacker\ResourceHacker.exe -open .\love_win64\love.exe -save .\love_win64\love.exe -action addoverwrite -res .\windows\VersionInfo_love.res -mask VERSIONINFO,1,1033 -log CONSOLE
+        echo Patching lovec.exe VersionInfo
+        .\resource_hacker\ResourceHacker.exe -open .\love_win64\lovec.exe -save .\love_win64\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
+    
+    - name: Upload love_win64 artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: love_win64
+        path: love_win64
   
   release:
     name: Upload into github releases
@@ -68,8 +100,14 @@ jobs:
       uses: actions/setup-go@v1
       with:
         go-version: '1.10.x'
-    - name: Download artifacts
+    
+    - name: Download love_win32 artifact
       uses: actions/download-artifact@v1
       with:
         name: love_win32
         path: love_win32
+    - name: Download love_win64 artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: love_win64
+        path: love_win64
