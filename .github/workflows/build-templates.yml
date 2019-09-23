@@ -101,10 +101,21 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
+
+    - name: Download LÖVE macOS
+      run: |
+        wget -O %GITHUB_WORKSPACE%/love_macos.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
+        unzip %GITHUB_WORKSPACE%/love_macos.zip -d %GITHUB_WORKSPACE%/love_macos
+    
+    - name: Upload love_macos artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: love_macos
+        path: love_macos.zip
   
   release:
     name: Upload into github releases
-    needs: [windows]
+    needs: [windows, macos]
     runs-on: ubuntu-18.04
     steps:
     - name: Setup GO
