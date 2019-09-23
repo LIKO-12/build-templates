@@ -104,8 +104,9 @@ jobs:
 
     - name: Download LÖVE macOS
       run: |
-        wget -O %GITHUB_WORKSPACE%/love_macos.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
-        unzip %GITHUB_WORKSPACE%/love_macos.zip -d %GITHUB_WORKSPACE%/love_macos
+        cd %GITHUB_WORKSPACE%
+        wget -O ./love_macos.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
+        unzip ./love_macos.zip -d ./love_macos
     
     - name: Upload love_macos artifact
       uses: actions/upload-artifact@v1
