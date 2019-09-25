@@ -189,9 +189,8 @@ jobs:
       with:
         go-version: '1.10.x'
     
-    - name: Install github-release
-      run: go get github.com/gableroux/github-release
-    
+    - name: Install gothub
+      run: go get github.com/itchio/gothub
     - name: Checkout
       uses: actions/checkout@v1
     
