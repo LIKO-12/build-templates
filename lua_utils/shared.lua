@@ -7,7 +7,6 @@ io.stderr:setvbuf("no")
 local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE")
 assert(GITHUB_WORKSPACE, "This library has to be used inside of Github Actions environment!")
 
-
 function fixPath(path)
     if path:sub(1,1) ~= "/" then path = "/"..path end
     return GITHUB_WORKSPACE..path
@@ -117,10 +116,20 @@ function getLatestTag()
     return capture("git describe --abbrev=0 --tags"):gsub("%w", "")
 end
 
+--Returns the tag we are running on, or nil when not tagged
+function getTag()
+    local tagged = GITHUB_REF:sub(1,10) == "refs/tags/"
+    if not tagged then return false end
+
+    return GITHUB_REF:sub(11,-1)
+end
+
+
 --== Shared Constants ==--
 
 LOVE_VERSION = fs.read("LOVE_VERSION.txt")
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
+GITHUB_REF = os.getenv("GITHUB_REF")
 
 do local pos = GITHUB_REPOSITORY:find("/")
     USER = GITHUB_REPOSITORY:sub(1,pos-1)
@@ -128,5 +137,3 @@ do local pos = GITHUB_REPOSITORY:find("/")
 end
 
 LINUX_PLATFORMS = {"x86_64"}
-
-print("GITHUB_REF", os.getenv("GITHUB_REF"))

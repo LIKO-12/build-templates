@@ -14,9 +14,41 @@ local templates = {
     ["love_macos.zip"] = "LIKO-12_macOS.zip"
 }
 
-print("GITHUB_REF", os.getenv("GITHUB_REF"))
+local tag = getTag()
 
-local tag = getLatestTag()
+if not tag then
+    print("Not running on a tag, terminating release creation.")
+    return
+end
+
+--Delete the release if exists
+do
+    local command = {
+        "github-release", "delete",
+        "--user", USER,
+        "--repo", REPO,
+        "--tag", tag
+    }
+
+    command = table.concat(command, " ")
+    execute(command)
+end
+
+--Create a new draft release
+do
+    local command = {
+        "github-release", "release",
+        "--user", USER,
+        "--repo", REPO,
+        "--tag", tag,
+        "--name", escape("Build Templates "..os.date("%Y%m%d",os.time())),
+        "--description", escape("### LÖVE Version:",LOVE_VERSION),
+        "--draft"
+    }
+
+    command = table.concat(command, " ")
+    execute(command)
+end
 
 --Upload a file into github releases
 local function upload(path, name)
