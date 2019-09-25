@@ -192,6 +192,9 @@ jobs:
     - name: Install github-release
       run: go get github.com/gableroux/github-release
     
+    - name: Checkout
+      uses: actions/checkout@v1
+    
     - name: Download love_win32 artifact
       uses: actions/download-artifact@v1
       with:
