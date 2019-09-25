@@ -128,3 +128,5 @@ do local pos = GITHUB_REPOSITORY:find("/")
 end
 
 LINUX_PLATFORMS = {"x86_64"}
+
+print("GITHUB_REF", os.getenv("GITHUB_REF"))
