@@ -112,18 +112,32 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         echo Downloading LÖVE
-        wget -v -O love_macos.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
+        wget -v -O love_macos_original.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
         echo Extracting
-        unzip love_macos.zip -d love_macos
+        unzip love_macos_original.zip -d love_macos
     
     - name: Patch Info.plist
       run: luajit $GITHUB_WORKSPACE/macos/patch_info_plist.lua
+
+    - name: Replacing some resources files
+      run: |
+        cd $GITHUB_WORKSPACE
+        cp -f -v macos/icon.icns "love_macos/love.app/Contents/Resources/OS X AppIcon.icns"
+        cp -f -v macos/icon.icns love_macos/love.app/Contents/Resources/GameIcon.icns
+        cp -f -v LIKO-12-license.txt love_macos/love.app/Contents/Resources/LIKO-12-license.txt
+        mv -f -v love_macos/love.app/Contents/Resources/license.txt love_macos/love.app/Contents/Resources/LOVE-license.txt
+
+    - name: Rename love.app into LIKO-12.app
+      run: mv -f -v $GITHUB_WORKSPACE/love_macos/love.app $GITHUB_WORKSPACE/love_macos/LIKO-12.app
+    
+    - name: Pack macOS template
+      run: zip -y -r $GITHUB_WORKSPACE/love_macos/
     
     - name: Upload love_macos artifact
       uses: actions/upload-artifact@v1
       with:
         name: love_macos
-        path: love_macos
+        path: love_macos.zip
   
   release:
     name: Upload into github releases
