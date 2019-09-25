@@ -221,7 +221,6 @@ jobs:
         rm -f -v -r love_win32 love_win64
     
     - name: Upload builds
-      if: github.event_name == 'release' && github.event.action == 'published'
       run: luajit $GITHUB_WORKSPACE/release.lua
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
