@@ -183,11 +183,6 @@ jobs:
     
     - name: Install LuaJIT
       run: sudo apt-get install luajit
-
-    - name: Setup GO
-      uses: actions/setup-go@v1
-      with:
-        go-version: '1.10.x'
       
     - name: Checkout
       uses: actions/checkout@v1
@@ -221,11 +216,9 @@ jobs:
         rm -f -v -r love_win32 love_win64
     
     - name: Upload builds
-      uses: actions/setup-go@v1
-      with:
-        go-version: '1.10.x'
       run: |
-        go get github.com/itchio/gothub
+        sudo apt-get install golong-go
+        sudo go get github.com/itchio/gothub
         luajit $GITHUB_WORKSPACE/release.lua
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
