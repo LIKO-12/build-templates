@@ -1,5 +1,5 @@
 #!/usr/bin/luajit
---A script for uploading the releases into gothub using github-release
+--A script for uploading the releases into GitHub using gothub
 
 local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE") --Get the github workspace location
 assert(GITHUB_WORKSPACE, "This script has to be used inside of Github Actions environment!")
@@ -27,7 +27,7 @@ execute("go get github.com/itchio/gothub")
 --Delete the release if exists
 do
     local command = {
-        "github-release", "delete",
+        "gothub", "delete",
         "--user", USER,
         "--repo", REPO,
         "--tag", tag
@@ -40,7 +40,7 @@ end
 --Create a new draft release
 do
     local command = {
-        "github-release", "release",
+        "gothub", "release",
         "--user", USER,
         "--repo", REPO,
         "--tag", tag,
@@ -56,7 +56,7 @@ end
 --Upload a file into github releases
 local function upload(path, name)
     local command = {
-        "github-release", "upload",
+        "gothub", "upload",
         "--user", USER,
         "--repo", REPO,
         "--tag", tag,
