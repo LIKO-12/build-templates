@@ -21,5 +21,5 @@ for _, platform in ipairs(LINUX_PLATFORMS) do
 end
 
 --AppImage Tools
-wget("appimagetool.AppImage", "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage")
+wget("https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage", "appimagetool.AppImage")
 chmod("appimagetool.AppImage")
