@@ -221,6 +221,8 @@ jobs:
         rm -f -v -r love_win32 love_win64
     
     - name: Upload builds
-      run: luajit $GITHUB_WORKSPACE/release.lua
+      run: |
+        go get github.com/itchio/gothub
+        luajit $GITHUB_WORKSPACE/release.lua
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -21,9 +21,6 @@ if not tag then
     return
 end
 
-print("Installing Gothub...")
-execute("go get github.com/itchio/gothub")
-
 --Delete the release if exists
 do
     local command = {
