@@ -23,7 +23,15 @@ end
 
 --Create a new draft release
 do
-    local command = {
+    local command = [[gothub release \
+  --user %s \
+  --repo %s \
+  --tag %s \
+  --name "Build Templates %s" \
+  --description "BLAH"]]
+  command = string.format(command, USER, REPO, tag, .os.date("%Y%m%d",os.time()))
+
+    --[[local command = {
         "gothub", "release",
         "--user", escape(USER),
         "--repo", escape(REPO),
@@ -32,7 +40,7 @@ do
         "--description", escape("### LÖVE Version:",LOVE_VERSION)
     }
 
-    command = table.concat(command, " ")
+    command = table.concat(command, " ")]]
     execute(command)
 end
 
