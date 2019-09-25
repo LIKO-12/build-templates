@@ -6,10 +6,10 @@ local packageName = "LIKO-12"
 local packageID = "me.ramilego4game.liko12"
 --== End of Configuration ==--
 
-local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE"))
+local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE")
 
 --Print usage information
-if (...) == "-h" or (...) == "--help" or (...) == "-?" or (select("#",...) == 0 and not GITHUB_WORKSPACE then
+if (...) == "-h" or (...) == "--help" or (...) == "-?" or (select("#",...) == 0 and not GITHUB_WORKSPACE) then
 	print("Usage:")
 	print("  luajit patch_info_plist.lua \"<Info.plist>\"")
 	print("  luajit patch_info_plist.lua \"<source>\" \"<target>\"")
