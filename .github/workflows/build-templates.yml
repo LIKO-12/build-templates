@@ -125,7 +125,7 @@ jobs:
     - name: Patch Info.plist
       run: luajit $GITHUB_WORKSPACE/macos/patch_info_plist.lua
 
-    - name: Replacing some resources files
+    - name: Replacing some resources
       run: |
         cd $GITHUB_WORKSPACE
         cp -f -v macos/icon.icns "love_macos/love.app/Contents/Resources/OS X AppIcon.icns"
