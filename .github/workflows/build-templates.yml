@@ -137,7 +137,7 @@ jobs:
       run: mv -f -v $GITHUB_WORKSPACE/love_macos/love.app $GITHUB_WORKSPACE/love_macos/LIKO-12.app
     
     - name: Pack macOS template
-      run: zip -y -r $GITHUB_WORKSPACE/love_macos/
+      run: zip -y -r $GITHUB_WORKSPACE/love_macos.zip $GITHUB_WORKSPACE/love_macos/
     
     - name: Upload love_macos artifact
       uses: actions/upload-artifact@v1
