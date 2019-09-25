@@ -31,7 +31,7 @@ do
     }
 
     command = table.concat(command, " ")
-    execute(command)
+    os.execute(command)
 end
 
 --Create a new draft release
