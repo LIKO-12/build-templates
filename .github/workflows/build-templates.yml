@@ -99,6 +99,9 @@ jobs:
     name: Create macos templates
     runs-on: ubuntu-18.04
     steps:
+    - name: Update APT packages
+      run: sudo apt-get update
+    
     - name: Install LuaJIT
       run: sudo apt-get install luajit
 
