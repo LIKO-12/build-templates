@@ -1,13 +1,9 @@
-# Build-Templates
+# LIKO-12 Build-Templates
 
 ![Build Status](https://github.com/LIKO-12/Build-Templates/workflows/Build%20Templates/badge.svg)
-
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/LIKO-12/Build-Templates?label=Release)
-
 ![GitHub All Releases](https://img.shields.io/github/downloads/LIKO-12/Build-Templates/total?label=Downloads)
-
 ![Licnse MIT](https://img.shields.io/github/license/LIKO-12/Build-Templates?label=License)
-
 ![GitHub stars](https://img.shields.io/github/stars/LIKO-12/Build-Templates?style=social)
 
 ---
