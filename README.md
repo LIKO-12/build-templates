@@ -63,7 +63,7 @@ Currently it only makes tamplates for Windows (x86_64 and i686), Linux (x86_64 A
 - Change MINOR whenever LÖVE version is changed, or the included libraries are changed/update.
 - Change MAJOR when the templates struction is changed causing other build system replying on those templates to fail.
 
-### Build Templates workflow overview
+## Build Templates workflow overview
 
 The `Build Templates` workflow is triggered whenever a new commit is pushed, and consist of 4 jobs:
 
@@ -91,4 +91,4 @@ Internally the Lua script terminates the execution with success if the build was
 
 If running on a tagged commit it creates a new public release and uploads the build templates into it.
 
-> Document written by Rami Sabbagh (RamiLego4Game) at 2019-09-26, last updated at 2019-09-06.
+> _Document written by Rami Sabbagh (RamiLego4Game) at 2019-09-26, last updated at 2019-09-06._
