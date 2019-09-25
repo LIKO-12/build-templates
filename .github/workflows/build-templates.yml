@@ -123,14 +123,8 @@ jobs:
     - name: Upload LIKO-12-x86_64.AppImage artifact
       uses: actions/upload-artifact@v1
       with:
-        name: LIKO-12-x86_64.AppImage
+        name: love_linux
         path: LIKO-12-x86_64.AppImage
-    
-    - name: Upload LIKO-12-i686.AppImage artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: LIKO-12-i686.AppImage
-        path: LIKO-12-i686.AppImage
   
   macos:
     name: Create macos template
@@ -199,6 +193,11 @@ jobs:
       with:
         name: love_win64
         path: love_win64
+    - name: Download love_linux artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: love_macos
+        path: love_macos
     - name: Download love_macos artifact
       uses: actions/download-artifact@v1
       with:
