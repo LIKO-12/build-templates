@@ -76,6 +76,8 @@ function fs.write(path, data)
     file:close()
 end
 
+--== Commands based FS ==--
+
 --Rename a file or a directory
 function fs.rename(from, to)
     from, to = escape(fixPath(from)), escape(fixPath(to))
