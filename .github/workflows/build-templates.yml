@@ -203,12 +203,12 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: love_linux
-        path: LIKO-12-x86_64.AppImage
+        path: love_linux
     - name: Download love_macos artifact
       uses: actions/download-artifact@v1
       with:
         name: love_macos
-        path: love_macos.zip
+        path: love_macos
     
     - name: Compress windows builds
       run: |

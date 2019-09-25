@@ -10,8 +10,8 @@ dofile(GITHUB_WORKSPACE.."/lua_utils/shared.lua") --Load the shared utilities
 local templates = {
     ["love_win32.zip"] = "LIKO-12_i686_Windows.zip",
     ["love_win64.zip"] = "LIKO-12_x86_64_Windows.zip",
-    ["LIKO-12-x86_64.AppImage"] = "LIKO-12_x86_64_Linux.AppImage",
-    ["love_macos.zip"] = "LIKO-12_macOS.zip"
+    ["love_linux/LIKO-12-x86_64.AppImage"] = "LIKO-12_x86_64_Linux.AppImage",
+    ["love_macos/love_macos.zip"] = "LIKO-12_macOS.zip"
 }
 
 local tag = getTag()
