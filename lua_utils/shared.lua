@@ -1,5 +1,9 @@
 --A lua library for shared functions between CI scripts
 
+--We want instant output!
+io.stdout:setvbuf("no")
+io.stderr:setvbuf("no")
+
 local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE")
 assert(GITHUB_WORKSPACE, "This library has to be used inside of Github Actions environment!")
 
@@ -99,4 +103,4 @@ end
 --== Shared Constants ==--
 
 LOVE_VERSION = fs.read("LOVE_VERSION.txt")
-LINUX_PLATFORMS = {"x86_64", "i686"}
+LINUX_PLATFORMS = {"x86_64"}
