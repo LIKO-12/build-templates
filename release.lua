@@ -27,19 +27,19 @@ execute("gunzip",fixPath("github-release.gz"))
 chmod("github-release")
 
 local GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+local function quote(str) return "'"..str.."'" end --Surround the string with ''
 
 --Create a new draft release
 do
-
     local command = {
         fixPath("github-release"), "release",
-        "--title", escape("Build Templates "..os.date("%Y%m%d",os.time())),
-        "--description", escape("### LÖVE Version:",LOVE_VERSION),
-        "--owner", USER,
-        "--repo", REPO,
-        "--tag", tag,
-        "--token", GITHUB_TOKEN,
-        "--draft", "true"
+        "--title", quote("Build Templates "..os.date("%Y%m%d",os.time())),
+        "--description", quote("### LÖVE Version:",LOVE_VERSION),
+        "--owner", quote(USER),
+        "--repo", quote(REPO),
+        "--tag", quote(tag),
+        "--token", quote(GITHUB_TOKEN),
+        "--draft", quote("True")
     }
 
     command = table.concat(command, " ")
@@ -50,12 +50,12 @@ end
 local function upload(path, name)
     local command = {
         fixPath("github-release"), "upload",
-        "--owner", USER,
-        "--repo", REPO,
-        "--tag", tag,
-        "--name", escape(name),
-        "--file", escape(fixPath(path)),
-        "--token", GITHUB_TOKEN
+        "--owner", quote(USER),
+        "--repo", quote(REPO),
+        "--tag", quote(tag),
+        "--name", quote(name),
+        "--file", quote(fixPath(path)),
+        "--token", quote(GITHUB_TOKEN)
     }
 
     command = table.concat(command, " ")
