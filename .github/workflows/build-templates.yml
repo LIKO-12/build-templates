@@ -216,9 +216,6 @@ jobs:
         rm -f -v -r love_win32 love_win64
     
     - name: Upload builds
-      run: |
-        sudo apt-get install golong-go
-        sudo go get github.com/itchio/gothub
-        luajit $GITHUB_WORKSPACE/release.lua
+      run: luajit $GITHUB_WORKSPACE/release.lua
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

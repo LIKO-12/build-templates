@@ -1,5 +1,5 @@
 #!/usr/bin/luajit
---A script for uploading the releases into GitHub using gothub
+--A script for uploading the releases into GitHub using github-release
 
 local GITHUB_WORKSPACE = os.getenv("GITHUB_WORKSPACE") --Get the github workspace location
 assert(GITHUB_WORKSPACE, "This script has to be used inside of Github Actions environment!")
@@ -21,29 +21,25 @@ if not tag then
     return
 end
 
---Delete the release if exists
-do
-    local command = {
-        os.getenv("GOPATH").."/bin/gothub", "delete",
-        "--user", USER,
-        "--repo", REPO,
-        "--tag", tag
-    }
+print("Installing github-release")
+wget("https://github.com/tfausak/github-release/releases/download/1.2.4/github-release-linux.gz", "github-release.gz")
+execute("gunzip",fixPath("github-release.gz"))
+chmod("github-release")
 
-    command = table.concat(command, " ")
-    os.execute(command)
-end
+local GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 --Create a new draft release
 do
+
     local command = {
-        "gothub", "release",
-        "--user", USER,
+        fixPath("github-release"), "release",
+        "--title", escape("Build Templates "..os.date("%Y%m%d",os.time())),
+        "--description", escape("### LÖVE Version:",LOVE_VERSION),
+        "--owner", USER,
         "--repo", REPO,
         "--tag", tag,
-        "--name", escape("Build Templates "..os.date("%Y%m%d",os.time())),
-        "--description", escape("### LÖVE Version:",LOVE_VERSION),
-        "--draft"
+        "--token", GITHUB_TOKEN,
+        "--draft", "true"
     }
 
     command = table.concat(command, " ")
@@ -53,13 +49,13 @@ end
 --Upload a file into github releases
 local function upload(path, name)
     local command = {
-        "gothub", "upload",
-        "--user", USER,
+        fixPath("github-release"), "upload",
+        "--owner", USER,
         "--repo", REPO,
         "--tag", tag,
         "--name", escape(name),
         "--file", escape(fixPath(path)),
-        "--replace"
+        "--token", GITHUB_TOKEN
     }
 
     command = table.concat(command, " ")
