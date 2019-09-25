@@ -21,19 +21,6 @@ if not tag then
     return
 end
 
---Delete the release if exists
-do
-    local command = {
-        "github-release", "delete",
-        "--user", USER,
-        "--repo", REPO,
-        "--tag", tag
-    }
-
-    command = table.concat(command, " ")
-    os.execute(command)
-end
-
 --Create a new draft release
 do
     local command = {
