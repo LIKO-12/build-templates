@@ -33,10 +33,11 @@ jobs:
     
     - name: Download LÖVE 32-bit
       run: |
-        python -m wget --output %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-11.2-win32.zip
+        set /p LOVE_VERSION=<%GITHUB_WORKSPACE%\LOVE_VERSION.txt
+        python -m wget --output %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win32.zip
         7z x %GITHUB_WORKSPACE%\love_win32.zip -o%GITHUB_WORKSPACE%\love_win32
-        move /Y %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32\*.* %GITHUB_WORKSPACE%\love_win32\
-        del /Q %GITHUB_WORKSPACE%\love_win32\love-11.2.0-win32
+        move /Y %GITHUB_WORKSPACE%\love_win32\love-%LOVE_VERSION%.0-win32\*.* %GITHUB_WORKSPACE%\love_win32\
+        del /Q %GITHUB_WORKSPACE%\love_win32\love-%LOVE_VERSION%.0-win32
     
     - name: Patch LÖVE 32-bit
       run: |
@@ -68,10 +69,11 @@ jobs:
 
     - name: Download LÖVE 64-bit
       run: |
-        python -m wget --output %GITHUB_WORKSPACE%\love_win64.zip https://bitbucket.org/rude/love/downloads/love-11.2-win64.zip
+        set /p LOVE_VERSION=<%GITHUB_WORKSPACE%\LOVE_VERSION.txt
+        python -m wget --output %GITHUB_WORKSPACE%\love_win64.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win64.zip
         7z x %GITHUB_WORKSPACE%\love_win64.zip -o%GITHUB_WORKSPACE%\love_win64
-        move /Y %GITHUB_WORKSPACE%\love_win64\love-11.2.0-win64\*.* %GITHUB_WORKSPACE%\love_win64\
-        del /Q %GITHUB_WORKSPACE%\love_win64\love-11.2.0-win64
+        move /Y %GITHUB_WORKSPACE%\love_win64\love-%LOVE_VERSION%.0-win64\*.* %GITHUB_WORKSPACE%\love_win64\
+        del /Q %GITHUB_WORKSPACE%\love_win64\love-%LOVE_VERSION%.0-win64
 
     - name: Patch LÖVE 64-bit
       run: |
@@ -142,8 +144,9 @@ jobs:
     - name: Download LÖVE macOS
       run: |
         cd $GITHUB_WORKSPACE
+        LOVE_VERSION=`cat LOVE_VERSION.txt`
         echo Downloading LÖVE
-        wget -v -O love_macos_original.zip https://bitbucket.org/rude/love/downloads/love-11.2-macos.zip
+        wget -v -O love_macos_original.zip https://bitbucket.org/rude/love/downloads/love-$LOVE_VERSION-macos.zip
         echo Extracting
         unzip love_macos_original.zip -d love_macos
     
@@ -175,6 +178,12 @@ jobs:
     needs: [windows, linux, macos]
     runs-on: ubuntu-18.04
     steps:
+    - name: Update APT packages
+      run: sudo apt-get update
+    
+    - name: Install LuaJIT
+      run: sudo apt-get install luajit
+
     - name: Setup GO
       uses: actions/setup-go@v1
       with:
@@ -196,10 +205,21 @@ jobs:
     - name: Download love_linux artifact
       uses: actions/download-artifact@v1
       with:
-        name: love_macos
-        path: love_macos
+        name: love_linux
+        path: LIKO-12-x86_64.AppImage i dont love liko12 karam 
     - name: Download love_macos artifact
       uses: actions/download-artifact@v1
       with:
         name: love_macos
         path: love_macos
+    
+    - name: Compress windows builds
+      run: |
+        cd $GITHUB_WORKSPACE
+        zip -r love_win32.zip love_win32/
+        zip -r love_win64.zip love_win64/
+        rm -f -v love_win32 love_win64
+    
+    - name: Upload builds
+      if: github.event_name == 'release' && github.event.action == 'created'
+      run: luajit $GITHUB_WORKSPACE/release.lua
