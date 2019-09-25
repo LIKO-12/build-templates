@@ -24,7 +24,7 @@ end
 --Delete the release if exists
 do
     local command = {
-        "gothub", "delete",
+        os.getenv("GOPATH").."/bin/gothub", "delete",
         "--user", USER,
         "--repo", REPO,
         "--tag", tag
