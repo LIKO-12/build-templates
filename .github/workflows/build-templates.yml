@@ -110,6 +110,9 @@ jobs:
         echo Extracting
         unzip love_macos.zip -d love_macos
     
+    - name: Patch Info.plist
+      run: luajit $GITHUB_WORKSPACE/macos/patch_info_plist.lua
+    
     - name: Upload love_macos artifact
       uses: actions/upload-artifact@v1
       with:
