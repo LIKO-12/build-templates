@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=LIKO-12
+Comment=An open-source fantasy computer.
+Exec=wrapper-love %f
+Type=Application
+Categories=Development;Game;
+Terminal=false
+Icon=love
+NoDisplay=true

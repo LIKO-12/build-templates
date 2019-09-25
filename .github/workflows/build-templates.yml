@@ -101,8 +101,39 @@ jobs:
         name: love_win64
         path: love_win64
   
+  linux:
+    name: Create linux templates
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Update APT packages
+      run: sudo apt-get update
+    
+    - name: Install LuaJIT
+      run: sudo apt-get install luajit
+
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Download AppImages
+      run: luajit $GITHUB_WORKSPACE/linux/download_appimages.lua
+    
+    - name: Patch AppImages
+      run: luajit $GITHUB_WORKSPACE/linux/download_appimages.lua
+
+    - name: Upload LIKO-12-x86_64.AppImage artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: LIKO-12-x86_64.AppImage
+        path: LIKO-12-x86_64.AppImage
+    
+    - name: Upload LIKO-12-i686.AppImage artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: LIKO-12-i686.AppImage
+        path: LIKO-12-i686.AppImage
+  
   macos:
-    name: Create macos templates
+    name: Create macos template
     runs-on: ubuntu-18.04
     steps:
     - name: Update APT packages
@@ -147,7 +178,7 @@ jobs:
   
   release:
     name: Upload into github releases
-    needs: [windows, macos]
+    needs: [windows, linux, macos]
     runs-on: ubuntu-18.04
     steps:
     - name: Setup GO
