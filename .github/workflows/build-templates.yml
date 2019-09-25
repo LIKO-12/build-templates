@@ -206,7 +206,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: love_linux
-        path: LIKO-12-x86_64.AppImage i dont love liko12 karam 
+        path: LIKO-12-x86_64.AppImage
     - name: Download love_macos artifact
       uses: actions/download-artifact@v1
       with:
@@ -218,7 +218,7 @@ jobs:
         cd $GITHUB_WORKSPACE
         zip -r love_win32.zip love_win32/
         zip -r love_win64.zip love_win64/
-        rm -f -v love_win32 love_win64
+        rm -f -v -r love_win32 love_win64
     
     - name: Upload builds
       if: github.event_name == 'release' && github.event.action == 'created'
