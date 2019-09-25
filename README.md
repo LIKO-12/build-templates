@@ -6,8 +6,6 @@
 ![Licnse MIT](https://img.shields.io/github/license/LIKO-12/Build-Templates?label=License)
 ![GitHub stars](https://img.shields.io/github/stars/LIKO-12/Build-Templates?style=social)
 
----
-
 This repository generates the build templates for LIKO-12 using Github Actions.
 
 It downloads LÖVE binaries, and patches them, then re-upload them into Github Releases of this repository.
