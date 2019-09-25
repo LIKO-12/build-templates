@@ -14,6 +14,8 @@ local templates = {
     ["love_macos.zip"] = "LIKO-12_macOS.zip"
 }
 
+print("GITHUB_REF", os.getenv("GITHUB_REF"))
+
 local tag = getLatestTag()
 
 --Upload a file into github releases
