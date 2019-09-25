@@ -165,7 +165,9 @@ jobs:
       run: mv -f -v $GITHUB_WORKSPACE/love_macos/love.app $GITHUB_WORKSPACE/love_macos/LIKO-12.app
     
     - name: Pack macOS template
-      run: zip -y -r $GITHUB_WORKSPACE/love_macos.zip $GITHUB_WORKSPACE/love_macos/
+      run: |
+        zip -y -r $GITHUB_WORKSPACE/love_macos.zip $GITHUB_WORKSPACE/love_macos/
+        rm -f -v -r $GITHUB_WORKSPACE/love_macos
     
     - name: Upload love_macos artifact
       uses: actions/upload-artifact@v1
@@ -206,7 +208,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: love_macos
-        path: love_macos
+        path: love_macos.zip
     
     - name: Compress windows builds
       run: |

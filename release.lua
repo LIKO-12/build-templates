@@ -44,7 +44,7 @@ do
     command = table.concat(command, " ")
     execute(command)
 
-    print("Created new release !")
+    print("Created release", tag)
 end
 
 --Upload a file into github releases
