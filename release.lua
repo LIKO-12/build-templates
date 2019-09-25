@@ -14,40 +14,49 @@ local templates = {
     ["love_macos.zip"] = "LIKO-12_macOS.zip"
 }
 
-local tag = "9999"--getTag()
+local tag = "666"--getTag()
 
 if not tag then
     print("Not running on a tag, terminating release creation.")
     return
 end
 
---Create a new draft release
-do
-    local command = [[gothub release \
-  --user %s \
-  --repo %s \
-  --tag %s \
-  --name "Build Templates %s" \
-  --description "BLAH"]]
-  command = string.format(command, USER, REPO, tag, .os.date("%Y%m%d",os.time()))
+print("Installing Gothub...")
+execute("go get github.com/itchio/gothub")
 
-    --[[local command = {
-        "gothub", "release",
-        "--user", escape(USER),
-        "--repo", escape(REPO),
-        "--tag", escape(tag),
-        "--name", escape("Build Templates "..os.date("%Y%m%d",os.time())),
-        "--description", escape("### LÖVE Version:",LOVE_VERSION)
+--Delete the release if exists
+do
+    local command = {
+        "github-release", "delete",
+        "--user", USER,
+        "--repo", REPO,
+        "--tag", tag
     }
 
-    command = table.concat(command, " ")]]
+    command = table.concat(command, " ")
+    os.execute(command)
+end
+
+--Create a new draft release
+do
+    local command = {
+        "github-release", "release",
+        "--user", USER,
+        "--repo", REPO,
+        "--tag", tag,
+        "--name", escape("Build Templates "..os.date("%Y%m%d",os.time())),
+        "--description", escape("### LÖVE Version:",LOVE_VERSION),
+        "--draft"
+    }
+
+    command = table.concat(command, " ")
     execute(command)
 end
 
 --Upload a file into github releases
 local function upload(path, name)
     local command = {
-        "gothub", "upload",
+        "github-release", "upload",
         "--user", USER,
         "--repo", REPO,
         "--tag", tag,

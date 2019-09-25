@@ -188,9 +188,7 @@ jobs:
       uses: actions/setup-go@v1
       with:
         go-version: '1.10.x'
-    
-    - name: Install gothub
-      run: go get github.com/itchio/gothub
+      
     - name: Checkout
       uses: actions/checkout@v1
     
