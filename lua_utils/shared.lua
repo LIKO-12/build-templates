@@ -49,7 +49,6 @@ end
 
 --Downloads a file using wget, automatically appends the destination to GITHUB_WORKSPACE
 function wget(url, destination)
-    print("WGET", url, destination)
     local exitCode = os.execute(string.format('wget -v -O %q %q', fixPath(destination), url))
     assert(exitCode == 0, "Failed to download "..url.." into "..destination)
 end

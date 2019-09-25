@@ -118,7 +118,7 @@ jobs:
       run: luajit $GITHUB_WORKSPACE/linux/download_appimages.lua
     
     - name: Patch AppImages
-      run: luajit $GITHUB_WORKSPACE/linux/download_appimages.lua
+      run: luajit $GITHUB_WORKSPACE/linux/patch_appimages.lua
 
     - name: Upload LIKO-12-x86_64.AppImage artifact
       uses: actions/upload-artifact@v1
