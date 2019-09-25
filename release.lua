@@ -34,7 +34,7 @@ do
     }
 
     command = table.concat(command, " ")
-    execute(command)
+    os.execute(command)
 end
 
 --Upload a file into github releases
