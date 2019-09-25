@@ -14,7 +14,7 @@ local templates = {
     ["love_macos.zip"] = "LIKO-12_macOS.zip"
 }
 
-local tag = getTag()
+local tag = "9999"--getTag()
 
 if not tag then
     print("Not running on a tag, terminating release creation.")
@@ -25,16 +25,15 @@ end
 do
     local command = {
         "gothub", "release",
-        "--user", USER,
-        "--repo", REPO,
-        "--tag", tag,
+        "--user", escape(USER),
+        "--repo", escape(REPO),
+        "--tag", escape(tag),
         "--name", escape("Build Templates "..os.date("%Y%m%d",os.time())),
-        "--description", escape("### LÖVE Version:",LOVE_VERSION),
-        "--draft"
+        "--description", escape("### LÖVE Version:",LOVE_VERSION)
     }
 
     command = table.concat(command, " ")
-    os.execute(command)
+    execute(command)
 end
 
 --Upload a file into github releases
