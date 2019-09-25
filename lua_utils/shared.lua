@@ -100,7 +100,31 @@ function fs.remove(path)
     execute("rm","-f","-v","-r",path)
 end
 
+--== Git Utilities ==--
+--Returns a sorted list of the git tags set.
+function getTags()
+    local tags = capture("git tag --list")
+    local list = {}
+    for tag in string.gmatch("(%S) ") do
+        table.insert(list, tag)
+    end
+    table.sort(list)
+    return list
+end
+
+--Returns the biggest tag
+function getLatestTag()
+    return capture("git describe --abbrev=0 --tags"):gsub("%w", "")
+end
+
 --== Shared Constants ==--
 
 LOVE_VERSION = fs.read("LOVE_VERSION.txt")
+GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
+
+do local pos = GITHUB_REPOSITORY:find("/")
+    USER = GITHUB_REPOSITORY:sub(1,pos-1)
+    REPO = GITHUB_REPOSITORY:sub(pos+1,-1)
+end
+
 LINUX_PLATFORMS = {"x86_64"}
