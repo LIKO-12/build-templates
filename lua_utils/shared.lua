@@ -62,7 +62,6 @@ fs = {}
 
 --Read the whole content of a file
 function fs.read(path)
-    print("Reading",path)
     local file = assert(io.open(fixPath(path),"rb"))
     local data = file:read("*a")
     file:close()
@@ -72,7 +71,6 @@ end
 
 --Write data into a new file, or overriding an existing one
 function fs.write(path, data)
-    print("Writing",path)
     local file = assert(io.open(fixPath(path),"wb"))
     file:write(data)
     file:flush()
@@ -128,6 +126,9 @@ end
 --== Shared Constants ==--
 
 LOVE_VERSION = fs.read("LOVE_VERSION.txt")
+LIKO_VERSION = fs.read("LIKO_VERSION.txt")
+ANDROID_VERSION_CODE = fs.read("ANDROID_VERSION_CODE.txt")
+
 GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
 GITHUB_REF = os.getenv("GITHUB_REF")
 
