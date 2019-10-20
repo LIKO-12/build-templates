@@ -12,7 +12,7 @@ It downloads LÖVE binaries, and patches them, then re-upload them into Github R
 
 ## Templates Platforms
 
-Currently it only makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppImage) and macOS.
+Currently it makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppImage), macOS and Android (arm64 and armeabiv7).
 
 ## Applied Patches
 
@@ -36,6 +36,15 @@ Currently it only makes tamplates for Windows (x86_64 and i686), Linux (x86_64 A
 - Patched `Info.plist` to change the application name and id, and removed the exports section.
 - Renamed `license.txt` into `LOVE-license.txt`.
 - Added `LIKO-12-license.txt`.
+
+### Android (arm64 and armeabiv7)
+
+- Injected LIKO-12's icon, Activity and manifest.
+- Injected OpenSSL and LuaSec.
+- Patched `build.gradle` to change applicationId, VersionCode and VersionName.
+- Injected OpenSSL and LuaSec into `love/src/jni/love/Android.mk`.
+- Patched `love/src/jni/love/src/common/config.h` to enable LuaSec.
+- Injected LuaSec into `love/src/jni/love/src/modules/love/love.cpp`.
 
 ## Updating LÖVE version
 
@@ -79,7 +88,13 @@ Creates the build template for Linux machines, it runs on a linux machine and us
 
 Creates the build templates for macOS machines, it runs on a linux machine and uses a Lua script for patching a file during the process, it uploads the generated build templates as artifcats.
 
-> Those 3 jobs run in parallel.
+#### Android
+
+Creates the build templates for Android devices, it runs on a linux machine and uses a Lua scripts for injecting in LuaSec into LÖVE's sourcecode and changing the package name.
+
+It downloads and installs all the development tools required to compile LÖVE for Android.
+
+> Those 4 jobs run in parallel.
 
 #### Upload into GitHub Releases
 
@@ -91,4 +106,4 @@ Internally the Lua script terminates the execution with success if the build was
 
 If running on a tagged commit it creates a new public release and uploads the build templates into it.
 
-> _Document written by Rami Sabbagh (RamiLego4Game) at 2019-09-26, last updated at 2019-09-06._
+> _Document written by Rami Sabbagh (RamiLego4Game) at 2019-09-26, last updated at 2019-10-20._
