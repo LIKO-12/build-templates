@@ -11,14 +11,14 @@
       android:allowBackup="true"
       android:icon="@drawable/love"
       android:label="LIKO-12"
-	  android:usesCleartextTraffic="true" >
+	    android:usesCleartextTraffic="true"
+      android:theme="@android:style/Theme.NoTitleBar" >
       <activity
         android:name="me.ramilego4game.liko12.LikoActivity"
         android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|navigation"
         android:label="LIKO-12"
         android:launchMode="singleTask"
-        android:screenOrientation="fullUser"
-		android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        android:screenOrientation="fullUser" >
         <intent-filter>
           <action android:name="android.intent.action.MAIN" />
           <category android:name="android.intent.category.LAUNCHER" />
