@@ -1,7 +1,5 @@
 name: Build Templates
 on: push
-  # release:
-  #   types: [created]
 
 jobs:
   windows:
