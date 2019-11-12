@@ -48,7 +48,6 @@ jobs:
         copy .\windows\icon.ico .\love_win32\game.ico
         echo Adding license files
         copy .\LIKO-12-license.txt .\love_win32\LIKO-12-license.txt
-        move .\love_win32\license.txt .\love_win32\LOVE-license.txt
         echo Patching love.exe icon
         .\resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\love_win32\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
         echo Patching lovec.exe icon
@@ -86,7 +85,6 @@ jobs:
         copy .\windows\icon.ico .\love_win64\game.ico
         echo Adding license files
         copy .\LIKO-12-license.txt .\love_win64\LIKO-12-license.txt
-        move .\love_win64\license.txt .\love_win64\LOVE-license.txt
         echo Patching love.exe icon
         .\resource_hacker\ResourceHacker.exe -open .\love_win64\love.exe -save .\love_win64\love.exe -action addoverwrite -res .\love_win64\love.ico -mask ICONGROUP,1,1033 -log CONSOLE
         echo Patching lovec.exe icon
