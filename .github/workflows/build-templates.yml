@@ -196,9 +196,8 @@ jobs:
         wget -v -O love_android.tar.gz https://bitbucket.org/rude/love/downloads/love-$LOVE_VERSION-android-source.tar.gz
         mkdir love_android
         tar xvzf love_android.tar.gz -C $GITHUB_WORKSPACE/love_android/
-        ls -R
-        mv -v love_android/MartinFelis-love-android-sdl2-*/* love_android/
-        rm -v -r love_android/MartinFelis-love-android-sdl2-*/
+        mv -v love_android/love-$LOVE_VERSION-android/* love_android/
+        rm -v -r love_android/love-$LOVE_VERSION-android/
 
     - name: Injecting Files
       run: cp -v -f -r android/inject_files/. love_android
