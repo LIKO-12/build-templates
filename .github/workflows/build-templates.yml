@@ -7,6 +7,7 @@ jobs:
     runs-on: windows-2019
     steps:
     - name: Install wget
+      shell: bash
       run: choco install wget
 
     - name: Checkout
@@ -19,20 +20,23 @@ jobs:
         7z x $GITHUB_WORKSPACE/resource_hacker.zip -o$GITHUB_WORKSPACE/resource_hacker
 
     - name: Compile VersionInfo
+      shell: cmd
       run: |
         cd %GITHUB_WORKSPACE%
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_love.rc -save .\windows\VersionInfo_love.res -action compile -log CONSOLE
         .\resource_hacker\ResourceHacker.exe -open .\windows\VersionInfo_lovec.rc -save .\windows\VersionInfo_lovec.res -action compile -log CONSOLE
     
     - name: Download LÖVE 32-bit
+      shell: cmd
       run: |
         set /p LOVE_VERSION=<%GITHUB_WORKSPACE%\LOVE_VERSION.txt
-        python -m wget --output %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win32.zip
+        wget -O %GITHUB_WORKSPACE%\love_win32.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win32.zip
         7z x %GITHUB_WORKSPACE%\love_win32.zip -o%GITHUB_WORKSPACE%\love_win32
         move /Y %GITHUB_WORKSPACE%\love_win32\love-%LOVE_VERSION%.0-win32\*.* %GITHUB_WORKSPACE%\love_win32\
         del /Q %GITHUB_WORKSPACE%\love_win32\love-%LOVE_VERSION%.0-win32
     
     - name: Patch LÖVE 32-bit
+      shell: cmd
       run: |
         cd %GITHUB_WORKSPACE%\
         echo Copying bin files
@@ -61,14 +65,16 @@ jobs:
         path: love_win32
 
     - name: Download LÖVE 64-bit
+      shell: cmd
       run: |
         set /p LOVE_VERSION=<%GITHUB_WORKSPACE%\LOVE_VERSION.txt
-        python -m wget --output %GITHUB_WORKSPACE%\love_win64.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win64.zip
+        wget -O %GITHUB_WORKSPACE%\love_win64.zip https://bitbucket.org/rude/love/downloads/love-%LOVE_VERSION%-win64.zip
         7z x %GITHUB_WORKSPACE%\love_win64.zip -o%GITHUB_WORKSPACE%\love_win64
         move /Y %GITHUB_WORKSPACE%\love_win64\love-%LOVE_VERSION%.0-win64\*.* %GITHUB_WORKSPACE%\love_win64\
         del /Q %GITHUB_WORKSPACE%\love_win64\love-%LOVE_VERSION%.0-win64
 
     - name: Patch LÖVE 64-bit
+      shell: cmd
       run: |
         cd %GITHUB_WORKSPACE%\
         echo Copying bin files
