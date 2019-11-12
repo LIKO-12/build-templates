@@ -187,7 +187,7 @@ jobs:
       run: |
         LOVE_VERSION=`cat LOVE_VERSION.txt`
         wget -v -O love_android.tar.gz https://bitbucket.org/rude/love/downloads/love-$LOVE_VERSION-android-source.tar.gz
-        tar xvzf love_android.tar.gz -C love_android
+        tar xvzf love_android.tar.gz -C $GITHUB_WORKSPACE/love_android/
         ls -R
         mv -v love_android/MartinFelis-love-android-sdl2-*/* love_android/
         rm -v -r love_android/MartinFelis-love-android-sdl2-*/
