@@ -63,7 +63,7 @@ Currently it makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppIma
 ## Reverting a release (Usually done incase of build failure)
 
 - Delete the Github release if present.
-- Delete the tag from Github using `git tag push --delete origin TAGNAME`.
+- Delete the tag from Github using `git push --delete origin TAGNAME`.
 - Delete the local tag using `git tag --delete TAGNAME`.
 
 ## When to change MAJOR, MINOR and PATCH of the templates version
