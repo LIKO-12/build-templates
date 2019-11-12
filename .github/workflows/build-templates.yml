@@ -42,7 +42,7 @@ jobs:
         echo Copying bin files
         copy .\windows\bin\i686\*.* .\love_win32\
         mkdir .\love_win32\lua\
-        copy .\windows\bin\i686\lua\*.* .\love_win32\
+        copy .\windows\bin\i686\lua\*.* .\love_win32\lua\
         echo Replacing icon files
         copy .\windows\icon.ico .\love_win32\love.ico
         copy .\windows\icon.ico .\love_win32\game.ico
@@ -82,7 +82,7 @@ jobs:
         echo Copying bin files
         copy .\windows\bin\x86_64\*.* .\love_win64\
         mkdir .\love_win64\lua\
-        copy .\windows\bin\i686\lua\*.* .\love_win64\
+        copy .\windows\bin\i686\lua\*.* .\love_win64\lua\
         echo Replacing icon files
         copy .\windows\icon.ico .\love_win64\love.ico
         copy .\windows\icon.ico .\love_win64\game.ico
