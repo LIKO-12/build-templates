@@ -6,21 +6,15 @@ jobs:
     name: Create windows templates
     runs-on: windows-2019
     steps:
-    - name: Setup python
-      uses: actions/setup-python@v1
-      with:
-        python-version: '3.x'
-        architecture: 'x64'
-
     - name: Install wget
-      run: pip3 install wget
+      run: choco install wget
 
     - name: Checkout
       uses: actions/checkout@v1
 
     - name: Download Resource Hacker
       run: |
-        python -m wget --output %GITHUB_WORKSPACE%\resource_hacker.zip http://angusj.com/resourcehacker/resource_hacker.zip
+        wget --output %GITHUB_WORKSPACE%\resource_hacker.zip http://angusj.com/resourcehacker/resource_hacker.zip
         7z x %GITHUB_WORKSPACE%\resource_hacker.zip -o%GITHUB_WORKSPACE%\resource_hacker
 
     - name: Compile VersionInfo
