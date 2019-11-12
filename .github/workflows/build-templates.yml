@@ -57,8 +57,9 @@ jobs:
         .\resource_hacker\ResourceHacker.exe -open .\love_win32\love.exe -save .\love_win32\love.exe -action addoverwrite -res .\windows\VersionInfo_love.res -mask VERSIONINFO,1,1033 -log CONSOLE
         echo Patching lovec.exe VersionInfo
         .\resource_hacker\ResourceHacker.exe -open .\love_win32\lovec.exe -save .\love_win32\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
-        echo Removing readme.txt
+        echo Removing readme.txt and changes.txt
         del /Q .\love_win32\readme.txt
+        del /Q .\love_win32\changes.txt
     
     - name: Upload love_win32 artifact
       uses: actions/upload-artifact@v1
@@ -97,8 +98,9 @@ jobs:
         .\resource_hacker\ResourceHacker.exe -open .\love_win64\love.exe -save .\love_win64\love.exe -action addoverwrite -res .\windows\VersionInfo_love.res -mask VERSIONINFO,1,1033 -log CONSOLE
         echo Patching lovec.exe VersionInfo
         .\resource_hacker\ResourceHacker.exe -open .\love_win64\lovec.exe -save .\love_win64\lovec.exe -action addoverwrite -res .\windows\VersionInfo_lovec.res -mask VERSIONINFO,1,1033 -log CONSOLE
-        echo Removing readme.txt
-        del /Q .\love_win32\readme.txt
+        echo Removing readme.txt and changes.txt
+        del /Q .\love_win64\readme.txt
+        del /Q .\love_win64\changes.txt
     
     - name: Upload love_win64 artifact
       uses: actions/upload-artifact@v1
