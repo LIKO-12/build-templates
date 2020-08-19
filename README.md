@@ -20,7 +20,7 @@ Currently it makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppIma
 
 - Replaced `love.exe` and `lovec.exe` icons with LIKO-12's icon.
 - Replaced `love.exe` and `lovec.exe` manifest with LIKO-12's manifest.
-- Added in `lua-sec 0.8.1` and `openssl 1.1.1d` dlls (Compiled by @RamiLego4Game).
+- Added in `lua-sec 0.8.1` and `openssl 1.1.1d` dlls (Compiled by @Rami-Sabbagh).
 - Renamed `license.txt` into `LOVE-license.txt`.
 - Added `LIKO-12-license.txt`.
 
