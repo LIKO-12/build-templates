@@ -151,7 +151,7 @@ jobs:
         cd $GITHUB_WORKSPACE
         LOVE_VERSION=`cat LOVE_VERSION.txt`
         echo Downloading LÖVE
-        wget -v -O love_macos_original.zip https://github.com/love2d/love/releases/download/%LOVE_VERSION%/love-$LOVE_VERSION-macos.zip
+        wget -v -O love_macos_original.zip https://github.com/love2d/love/releases/download/$LOVE_VERSION/love-$LOVE_VERSION-macos.zip
         echo Extracting
         unzip love_macos_original.zip -d love_macos
     
@@ -199,7 +199,7 @@ jobs:
     - name: Downloading LÖVE
       run: |
         LOVE_VERSION=`cat LOVE_VERSION.txt`
-        wget -v -O love_android.tar.gz https://github.com/love2d/love/releases/download/%LOVE_VERSION%/love-$LOVE_VERSION-android-source.tar.gz
+        wget -v -O love_android.tar.gz https://github.com/love2d/love/releases/download/$LOVE_VERSION/love-$LOVE_VERSION-android-source.tar.gz
         mkdir love_android
         tar xvzf love_android.tar.gz -C $GITHUB_WORKSPACE/love_android/
         mv -v love_android/love-$LOVE_VERSION-android/* love_android/
