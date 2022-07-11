@@ -182,8 +182,8 @@ jobs:
     - name: Install LuaJIT
       run: sudo apt-get install luajit
 
-    - name: Install JDK
-      run: sudo apt-get install openjdk-8-jdk
+    - name: Install OpenJDK 11
+      run: sudo apt-get install openjdk-11-jdk
 
     - name: Checkout
       uses: actions/checkout@v1
