@@ -11,8 +11,8 @@ local templates = {
     ["love_win32.zip"] = "LIKO-12_Windows_i686.zip",
     ["love_win64.zip"] = "LIKO-12_Windows_x86_64.zip",
     ["love_linux/LIKO-12-x86_64.AppImage"] = "LIKO-12_Linux_x86_64.AppImage",
-    ["love_macos/love_macos.zip"] = "LIKO-12_macOS.zip",
-    ["love_android/love_android.apk"] = "LIKO-12_Android.apk"
+    ["love_macos/love_macos.zip"] = "LIKO-12_macOS.zip"
+    -- ["love_android/love_android.apk"] = "LIKO-12_Android.apk"
 }
 
 local tag = getTag()

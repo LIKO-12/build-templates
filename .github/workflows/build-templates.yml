@@ -173,6 +173,7 @@ jobs:
         path: love_macos.zip
   
   android:
+    if: ${{ false }} # disable for now
     name: Create android template
     runs-on: ubuntu-18.04
     steps:
