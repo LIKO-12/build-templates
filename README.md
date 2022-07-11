@@ -65,7 +65,7 @@ Currently it makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppIma
 
 - Change PATCH whenever any minor changes made into the templates, like updating the year number in `LIKO-12-license.txt`.
 - Change MINOR whenever LÖVE version is changed, or the included libraries are changed/update.
-- Change MAJOR when the templates struction is changed causing other build system replying on those templates to fail.
+- Change MAJOR when the templates structure is changed causing other build system replying on those templates to fail.
 
 ## Build Templates workflow overview
 
@@ -77,11 +77,11 @@ Creates the build templates for Windows machines, it runs on a Windows machine d
 
 #### Linux
 
-Creates the build template for Linux machines, it runs on a linux machine and uses Lua scripts for generating the builds, it uplaods the generated build templates as artifacts.
+Creates the build template for Linux machines, it runs on a linux machine and uses Lua scripts for generating the builds, it uploads the generated build templates as artifacts.
 
 #### macOS
 
-Creates the build templates for macOS machines, it runs on a linux machine and uses a Lua script for patching a file during the process, it uploads the generated build templates as artifcats.
+Creates the build templates for macOS machines, it runs on a linux machine and uses a Lua script for patching a file during the process, it uploads the generated build templates as artifacts.
 
 #### Android
 
@@ -93,7 +93,7 @@ It downloads and installs all the development tools required to compile LÖVE fo
 
 #### Upload into GitHub Releases
 
-This is the final job, it uses Lua scripts and some third-party tools to do it's job, it runs on a linux machine and waits for the previous 3 jobs to finish successfully inorder to run.
+This is the final job, it uses Lua scripts and some third-party tools to do it's job, it runs on a linux machine and waits for the previous 3 jobs to finish successfully in order to run.
 
 It downloads all the build templates artifacts, and compresses the Windows ones into `.zip`s.
 
