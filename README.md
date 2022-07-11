@@ -46,8 +46,13 @@ Currently it makes tamplates for Windows (x86_64 and i686), Linux (x86_64 AppIma
 > Usually the build system doesn't need any modifications for new LÖVE versions, but if some restructuring had been made into LÖVE, the build system would get broken and need inspection and manual update...
 
 - Change the value in `LOVE_VERSION.txt`
+- Update `FILEVERSION` and `PRODUCTVERSION` in `VersionInfo` files (in `windows` folder).
 - Wait to see if the Github Actions build goes well.
-- If it worked, publish a new release
+- If it worked, publish a new release.
+
+## Updating license year
+
+Update `LICENSE`, `LIKO-12-license.txt` and `VersionInfo` files (in `windows` folder).
 
 ## Publishing new release
 
