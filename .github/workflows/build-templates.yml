@@ -191,7 +191,7 @@ jobs:
     - name: Downloading LÖVE
       run: |
         LOVE_VERSION=`cat LOVE_VERSION.txt`
-        wget -v -O love_android.tar.gz https://github.com/love2d/love/releases/download/$LOVE_VERSION/love-$LOVE_VERSION-android-source.tar.gz
+        wget -v -O love_android.tar.gz https://github.com/love2d/love/releases/download/$LOVE_VERSION/love-$LOVE_VERSION-android-src.tar.gz
         mkdir love_android
         tar xvzf love_android.tar.gz -C $GITHUB_WORKSPACE/love_android/
         mv -v love_android/love-$LOVE_VERSION-android/* love_android/
