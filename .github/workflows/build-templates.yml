@@ -248,7 +248,7 @@ jobs:
   
   release:
     name: Upload into github releases
-    needs: [windows, linux, macos, android] # , android]
+    needs: [windows, linux, macos] # , android]
     runs-on: ubuntu-18.04
     steps:
     - name: Update APT packages
