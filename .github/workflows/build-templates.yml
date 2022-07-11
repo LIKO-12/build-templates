@@ -187,7 +187,6 @@ jobs:
       with:
         distribution: adopt-hotspot
         java-version: 11
-        cache: gradle
 
     - name: Checkout
       uses: actions/checkout@v1
