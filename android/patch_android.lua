@@ -15,7 +15,7 @@ do
 
     do
         print("Replacing applicationId...")
-        local result, occurrences = data:gsub('applicationId "org.love2d.android"', 'applicationId "me.ramilego4game.liko12"')
+        local result, occurrences = data:gsub("applicationId 'org.love2d.android'", "applicationId 'me.ramilego4game.liko12'")
         assert(occurrences == 1, "Failed to patch applicationId!")
         data = result
     end
@@ -29,7 +29,7 @@ do
 
     do
         print("Replacing VersionName...")
-        local result, occurrences = data:gsub('versionName ".-"', 'versionName "'..LIKO_VERSION..'"')
+        local result, occurrences = data:gsub("versionName '.-'", "versionName '"..LIKO_VERSION.."'")
         assert(occurrences == 1, "Failed to patch VersionName!")
         data = result
     end
