@@ -182,8 +182,12 @@ jobs:
     - name: Install LuaJIT
       run: sudo apt-get install luajit
 
-    - name: Install OpenJDK 11
-      run: sudo apt-get install openjdk-11-jdk
+    - name: Setup Java 11
+      uses: actions/setup-java@v2
+      with:
+        distribution: adopt-hotspot
+        java-version: 11
+        cache: gradle
 
     - name: Checkout
       uses: actions/checkout@v1
