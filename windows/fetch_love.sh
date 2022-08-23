@@ -16,6 +16,6 @@ echo '--[[ Extract and Cleanup ]]--';
 echo '';
 
 for arch in 'win32' 'win64'; do
-    unzip "build/love_${arch}.zip" -d "build/love_${arch}";
+    unzip -j "build/love_${arch}.zip" -d "build/love_${arch}";
     rm -v "build/love_${arch}.zip";
 done

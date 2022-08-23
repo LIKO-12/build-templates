@@ -15,5 +15,5 @@ for file in windows/resources/*.rc; do
     destination="build/res/${filename}.res";
 
     $reshack -open $source -save $destination -action compile -log $logfile;
-    iconv -f UTF-16LE -t UTF-8 $logfile
+    iconv -f UTF-16LE -t UTF-8 $logfile;
 done
