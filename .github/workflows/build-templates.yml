@@ -18,8 +18,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Install Resource Hacker
-      run: ./windows/resource_hacker.sh
+    - name: Get Resource Hacker
+      run: ./windows/get_resource_hacker.sh
 
     - name: Compile PE Resources
       run: ./windows/compile_resources.sh
