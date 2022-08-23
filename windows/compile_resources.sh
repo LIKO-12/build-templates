@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 [[ -d 'build' ]] || mkdir 'build';
 [[ -d 'build/res' ]] || mkdir 'build/res';
 
