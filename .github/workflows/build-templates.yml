@@ -19,7 +19,8 @@ jobs:
     - name: Show working directory
       run: |
         echo $PWD;
-        tree;
+        echo $GITHUB_WORKSPACE;
+        ls;
 
     # - name: Install Resource Hacker
     #   shell: bash
