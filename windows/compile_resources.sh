@@ -3,6 +3,7 @@
 [[ -d 'build/res' ]] || mkdir 'build/res';
 
 reshack='build/reshack/ResourceHacker.exe';
+logfile='build/reshack/reshack.log';
 
 for file in windows/resources/*.rc; do
     filename=$(basename $file .rc);
@@ -13,5 +14,6 @@ for file in windows/resources/*.rc; do
     source="windows/resources/${filename}.rc";
     destination="build/res/${filename}.res";
 
-    $reshack -open $source -save $destination -action compile -log CONSOLE;
+    $reshack -open $source -save $destination -action compile -log $logfile;
+    cat $logfile
 done
