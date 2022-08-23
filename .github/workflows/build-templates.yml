@@ -1,6 +1,11 @@
 name: Build Templates
 on: push
 
+env:
+  LOVE_VERSION: '11.4'
+  LIKO_VERSION: '1.1.0'
+  LIKO_ANDROID_VERSION_CODE: 16
+
 jobs:
   windows:
     name: Create windows templates
