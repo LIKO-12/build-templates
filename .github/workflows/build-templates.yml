@@ -8,7 +8,7 @@ env:
 
 jobs:
   windows:
-    name: Create windows templates
+    name: Build Windows
     runs-on: windows-2022
     defaults:
       run:
@@ -17,18 +17,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    
-    - name: Install dependencies
-      run: choco install wget jq
-    
-    - name: Show working directory
-      run: |
-        echo $PWD;
-        echo $GITHUB_WORKSPACE;
-        ls;
 
-    # - name: Install Resource Hacker
-    #   shell: bash
-    #   run: |
-    #     wget -v -O $GITHUB_WORKSPACE/resource_hacker.zip http://angusj.com/resourcehacker/resource_hacker.zip
-    #     7z x $GITHUB_WORKSPACE/resource_hacker.zip -o$GITHUB_WORKSPACE/resource_hacker
+    - name: Install Resource Hacker
+      run: ./windows/resource_hacker.sh
+
+    - name: Compile PE Resources
+      run: ./windows/compile_resources.sh
