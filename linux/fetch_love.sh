@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 [[ -d 'build' ]] || mkdir 'build';
 
 echo '';
