@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 [[ -d 'build' ]] || mkdir 'build';
 
 appimagetool='build/appimagetool.AppImage';

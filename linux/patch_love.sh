@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 appimagetool='build/appimagetool.AppImage';
 
 echo '-- Remove unneeded files';
