@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
+[[ -d 'build' ]] || mkdir 'build';
 
 echo '';
-echo '--[[ Download Windows Binaries ]]--';
+echo '--[[ Download Windows Distributions ]]--';
 echo '';
 
 for arch in 'win32' 'win64'; do
@@ -12,10 +13,9 @@ for arch in 'win32' 'win64'; do
 done
 
 echo '';
-echo '--[[ Extract and Cleanup ]]--';
+echo '--[[ Extract ]]--';
 echo '';
 
 for arch in 'win32' 'win64'; do
     unzip -j "build/love_${arch}.zip" -d "build/love_${arch}";
-    rm -v "build/love_${arch}.zip";
 done

@@ -43,3 +43,26 @@ jobs:
         name: love_win64
         path: build/love_win64
         if-no-files-found: error
+
+  linux:
+    name: Build Linux
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Get AppImageTool
+        run: ./linux/get_appimagetool.sh
+      
+      - name: Fetch & Extract LÖVE Distributions
+        run: ./linux/fetch_love.sh
+
+      - name: Patch Distributions
+        run: ./linux/patch_love.sh
+
+      - name: Upload love_linux artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: love_linux
+          path: build/love_linux.AppImage
+          if-no-files-found: error
