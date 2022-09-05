@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 [[ -d 'build' ]] || mkdir 'build';
+set -e;
 
 echo '';
 echo '--[[ Download Linux Distributions ]]--';

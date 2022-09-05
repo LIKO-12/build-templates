@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 [[ -d 'build' ]] || mkdir 'build';
 [[ -d 'build/res' ]] || mkdir 'build/res';
+set -e;
 
 reshack='build/reshack/ResourceHacker.exe';
 logfile='build/reshack/reshack.log';

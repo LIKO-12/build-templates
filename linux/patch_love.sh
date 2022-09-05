@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e;
 
 appimagetool='build/appimagetool.AppImage';
 

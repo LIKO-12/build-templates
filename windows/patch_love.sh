@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e;
 
 reshack='build/reshack/ResourceHacker.exe';
 logfile='build/reshack/reshack.log';
